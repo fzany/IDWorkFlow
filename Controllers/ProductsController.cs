@@ -124,13 +124,15 @@ namespace IDWorkFlow.Controllers
         /// <param name="product"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        public async Task<ActionResult> PostProduct(Product product)
         {
 
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             product.UserId = userId;
             product.Id = Guid.NewGuid().ToString();
             _context.Product.Add(product);
+            _context.ProductHistory.Add(new ProductHistory() { Action = "Add", Date = DateTime.UtcNow, Product = product, UserId = userId, Id = Guid.NewGuid().ToString() });
+
             try
             {
                 await _context.SaveChangesAsync();
@@ -147,7 +149,7 @@ namespace IDWorkFlow.Controllers
                 }
             }
 
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return CreatedAtAction("GetProduct", new { id = product.Id });
         }
 
         // DELETE: api/Products/5
@@ -170,6 +172,8 @@ namespace IDWorkFlow.Controllers
             {
                 return BadRequest();
             }
+            _context.ProductHistory.Add(new ProductHistory() { Action = "Delete", Date = DateTime.UtcNow, Product = product, UserId = userId, Id = Guid.NewGuid().ToString() });
+            await _context.SaveChangesAsync();
 
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();

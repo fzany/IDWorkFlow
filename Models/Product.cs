@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace IDWorkFlow.Models
         public string UserId { get; set; }
         public string Summary { get; set; }
 
+        [JsonIgnore]
         public ICollection<ProductHistory> ProductHistories { get; set; }
 
     }

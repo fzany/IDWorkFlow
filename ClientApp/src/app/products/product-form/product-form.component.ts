@@ -24,7 +24,7 @@ export class ProductFormComponent  implements OnInit {
     this.service.postProduct().subscribe(
       res => {
         this.resetForm(form);
-        this.service.refreshProductList();
+       this.service.refreshProductList();
       },
       err => {
         console.log(err);
