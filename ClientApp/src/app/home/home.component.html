@@ -1,13 +1,7 @@
 
 <div *ngIf="isAuthenticated | async">
 
-  <div *ngIf="userRole==='Worker'">
   <app-product></app-product>
-  </div>
-
-  <div *ngIf="userRole==='Admin'">
-    <app-product-history></app-product-history>
-  </div>
 
 </div>
 

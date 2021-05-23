@@ -38,7 +38,8 @@ export class ProductService implements OnInit {
     return this.http.delete(this._baseUrl + this._productUrl + "/" + id);
   }
   refreshProductList() {
-    this.http.get(this._baseUrl + this._productUrl)
+    var IsLimited = this.userRole === "Worker";
+    this.http.get(this._baseUrl + this._productUrl + "?limit=" + IsLimited)
       .toPromise()
       .then(res => this.productList = res as ProductItem[]);
   }

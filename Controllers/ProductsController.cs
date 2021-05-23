@@ -32,13 +32,18 @@ namespace IDWorkFlow.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProduct(bool limit = false)
         {
             try
             {
                 string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = await _userManager.FindByIdAsync(userId);
-                var products = await _context.Product.Where(d => d.UserId == user.Id).ToListAsync();
+
+                List<Product> products;
+                if (limit)
+                    products = await _context.Product.Where(d => d.UserId == user.Id).ToListAsync();
+                else
+                    products = await _context.Product.ToListAsync();
                 return products;
             }
             catch (Exception ex)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../../shared/product-service';
 import { ProductItem } from '../../shared/product-model';
+import { AuthorizeService } from '../../../api-authorization/authorize.service';
 
 @Component({
   selector: 'app-product',
@@ -11,10 +12,14 @@ import { ProductItem } from '../../shared/product-model';
 /** product component*/
 export class ProductComponent implements OnInit {
 
-  constructor(public service: ProductService) { }
+  public userRole: string;
+  constructor(public service: ProductService, private authorizeService: AuthorizeService) { }
 
   ngOnInit(): void {
     this.service.refreshProductList();
+    this.authorizeService.getUser().subscribe(role => {
+      this.userRole = role.userRole;
+    });
   }
 
   populateForm(selectedRecord: ProductItem) {
@@ -22,11 +27,10 @@ export class ProductComponent implements OnInit {
   }
 
   onEdit(item: ProductItem) {
-   
+    console.log(item);
   }
 
   onDelete(id: string) {
-    console.log("deleting" + id);
     this.service.deleteProduct(id)
       .subscribe(
         res => {
