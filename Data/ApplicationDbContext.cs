@@ -19,9 +19,9 @@ namespace IDWorkFlow.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
-            builder.Entity<Product>()
-        .HasMany(e => e.ProductHistories)
-        .WithOne(c => c.Product);
+        //    builder.Entity<Product>()
+        //.HasMany(e => e.ProductHistories);
+       // .WithOne(c => c.Product);
 
 
             //    builder.Entity<ProductHistory>()

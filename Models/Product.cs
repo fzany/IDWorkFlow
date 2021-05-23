@@ -13,8 +13,5 @@ namespace IDWorkFlow.Models
         public string UserId { get; set; }
         public string Summary { get; set; }
 
-        [JsonIgnore]
-        public ICollection<ProductHistory> ProductHistories { get; set; }
-
     }
 }

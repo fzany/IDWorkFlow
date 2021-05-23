@@ -11,6 +11,9 @@ namespace IDWorkFlow.Models
         public string Action { get; set; }
         public string UserId { get; set; }
         public DateTime Date { get; set; }
-        public Product Product { get; set; }
+
+        public string ProductId { get; set; }
+        public string ProductName { get; set; }
+        public string ProductSummary { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IDWorkFlow.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210522231113_CustomData")]
+    [Migration("20210523122701_CustomData")]
     partial class CustomData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,14 +126,18 @@ namespace IDWorkFlow.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ProductId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductSummary")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductHistory");
                 });
@@ -376,15 +380,6 @@ namespace IDWorkFlow.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("IDWorkFlow.Models.ProductHistory", b =>
-                {
-                    b.HasOne("IDWorkFlow.Models.Product", "Product")
-                        .WithMany("ProductHistories")
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -434,11 +429,6 @@ namespace IDWorkFlow.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("IDWorkFlow.Models.Product", b =>
-                {
-                    b.Navigation("ProductHistories");
                 });
 #pragma warning restore 612, 618
         }

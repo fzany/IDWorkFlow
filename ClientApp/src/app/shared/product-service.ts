@@ -48,6 +48,10 @@ export class ProductService implements OnInit {
     var IsLimited = this.userRole === "Worker";
     this.http.get(this._baseUrl + this._productHistoryUrl + "?limit=" + IsLimited)
       .toPromise()
-      .then(res => this.productHistoryList = res as ProductHistory[]);
+      .then(res => {
+        this.productHistoryList = res as ProductHistory[];
+        console.log("history");
+        console.log(res);
+      });
   }
 }

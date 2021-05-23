@@ -97,7 +97,7 @@ namespace IDWorkFlow.Controllers
 
             _context.Entry(product).State = EntityState.Modified;
 
-            _context.ProductHistory.Add(new ProductHistory() { Action = "Modify", Date = DateTime.UtcNow, Product = product, UserId = userId, Id = Guid.NewGuid().ToString() });
+            _context.ProductHistory.Add(new ProductHistory() { Action = "Modify", Date = DateTime.UtcNow,  ProductName = product.Name, ProductId = product.Id, ProductSummary = product.Summary,  UserId = userId, Id = Guid.NewGuid().ToString() });
             try
             {
                 await _context.SaveChangesAsync();
@@ -131,7 +131,7 @@ namespace IDWorkFlow.Controllers
             product.UserId = userId;
             product.Id = Guid.NewGuid().ToString();
             _context.Product.Add(product);
-            _context.ProductHistory.Add(new ProductHistory() { Action = "Add", Date = DateTime.UtcNow, Product = product, UserId = userId, Id = Guid.NewGuid().ToString() });
+            _context.ProductHistory.Add(new ProductHistory() { Action = "Add", Date = DateTime.UtcNow, ProductName = product.Name, ProductId = product.Id, ProductSummary = product.Summary, UserId = userId, Id = Guid.NewGuid().ToString() });
 
             try
             {
@@ -172,9 +172,7 @@ namespace IDWorkFlow.Controllers
             {
                 return BadRequest();
             }
-            _context.ProductHistory.Add(new ProductHistory() { Action = "Delete", Date = DateTime.UtcNow, Product = product, UserId = userId, Id = Guid.NewGuid().ToString() });
-            await _context.SaveChangesAsync();
-
+            _context.ProductHistory.Add(new ProductHistory() { Action = "Delete", Date = DateTime.UtcNow, ProductName = product.Name, ProductId = product.Id, ProductSummary = product.Summary, UserId = userId, Id = Guid.NewGuid().ToString() });
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
 

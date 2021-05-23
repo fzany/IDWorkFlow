@@ -13,11 +13,18 @@ export class ProductHistory {
   id: string;
   action: string;
   date: Date;
-  productid: string;
+  productId: string;
+  productName: string;
+  productSummary: string;
+  userId: string;
+
   constructor() {
     this.id = "";
     this.action = "";
-    this.productid = "";
+    this.productId = "";
+    this.productName = "";
+    this.productSummary = "";
+    this.userId = "";
   }
 }
 

@@ -5,19 +5,21 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Action</th>
         <th>Date</th>
-        <th>Product</th>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Product Summary</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let row of service.productHistoryList">
-        <td (click)="populateForm(row)">{{row.id}}</td>
         <td (click)="populateForm(row)">{{row.action}}</td>
         <td (click)="populateForm(row)">{{row.date}}</td>
-        <td (click)="populateForm(row)">{{row.productid}}</td>
+        <td (click)="populateForm(row)">{{row.productId}}</td>
+        <td (click)="populateForm(row)">{{row.productName}}</td>
+        <td (click)="populateForm(row)">{{row.productSummary}}</td>
       </tr>
     </tbody>
   </table>
