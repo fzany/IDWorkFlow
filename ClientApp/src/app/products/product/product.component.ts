@@ -28,6 +28,7 @@ export class ProductComponent implements OnInit {
 
   onEdit(item: ProductItem) {
     console.log(item);
+    this.service.productFormData = item;
   }
 
   onDelete(id: string) {
