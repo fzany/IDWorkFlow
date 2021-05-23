@@ -1,0 +1,24 @@
+<div class="jumbotron py-2">
+  <h1 class="display-4 text-center">Product History</h1>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Action</th>
+        <th>Date</th>
+        <th>Product</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of service.productHistoryList">
+        <td (click)="populateForm(row)">{{row.id}}</td>
+        <td (click)="populateForm(row)">{{row.action}}</td>
+        <td (click)="populateForm(row)">{{row.date}}</td>
+        <td (click)="populateForm(row)">{{row.productid}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

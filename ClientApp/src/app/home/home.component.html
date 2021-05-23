@@ -1,0 +1,21 @@
+
+<div *ngIf="isAuthenticated | async">
+
+  <div *ngIf="userRole==='Worker'">
+  <app-product></app-product>
+  </div>
+
+  <div *ngIf="userRole==='Admin'">
+    <app-product-history></app-product-history>
+  </div>
+
+</div>
+
+<div *ngIf="!(isAuthenticated | async)">
+  <h1>Welcome!</h1>
+  <p>You can do a few things today.</p>
+
+  <a class="text-dark" [routerLink]='["/authentication/register"]'>Register</a> <br /> <br />
+  <a class="text-dark" [routerLink]='["/authentication/login"]'>Login</a>
+
+</div>
