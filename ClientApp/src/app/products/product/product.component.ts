@@ -25,7 +25,8 @@ export class ProductComponent implements OnInit {
    
   }
 
-  onDelete(id: number) {
+  onDelete(id: string) {
+    console.log("deleting" + id);
     this.service.deleteProduct(id)
       .subscribe(
         res => {

@@ -34,8 +34,8 @@ export class ProductService implements OnInit {
   putProduct() {
     return this.http.put(this._baseUrl + this._productUrl + "/" + this.productFormData.id, this.productFormData);
   }
-  deleteProduct(id: number) {
-    return this.http.delete(this._baseUrl + this._productUrl + "/" + this.productFormData.id);
+  deleteProduct(id: string) {
+    return this.http.delete(this._baseUrl + this._productUrl + "/" + id);
   }
   refreshProductList() {
     this.http.get(this._baseUrl + this._productUrl)
